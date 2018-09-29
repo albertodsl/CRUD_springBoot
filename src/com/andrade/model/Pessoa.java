@@ -2,7 +2,6 @@ package com.andrade.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -14,11 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @XmlRootElement
@@ -32,10 +27,6 @@ public class Pessoa implements Serializable {
 	private Integer idPessoa;
 	@Column(length=50)
 	private String nomePessoa;
-	@Column
-	@Temporal(TemporalType.DATE)
-	@JsonFormat(timezone="Brazil/East", pattern="yyyy-MM-dd")
-	private Date dtNascimento;
     @Column(length=60, unique=true)
     private String email;
     
@@ -46,17 +37,15 @@ public class Pessoa implements Serializable {
 	public Pessoa() {
 	}
 
-	public Pessoa(Integer idPessoa, String nomePessoa, Date dtNascimento, String email) {
+	public Pessoa(Integer idPessoa, String nomePessoa, String email) {
 		this.idPessoa = idPessoa;
 		this.nomePessoa = nomePessoa;
-		this.dtNascimento = dtNascimento;
 		this.email = email;
 	}
 
 	@Override
 	public String toString() {
-		return "Pessoa [idPessoa=" + idPessoa + ", nomePessoa=" + nomePessoa + ", dtNascimento=" + dtNascimento
-				+ ", email=" + email + "]";
+		return "Pessoa [idPessoa=" + idPessoa + ", nomePessoa=" + nomePessoa + ", dtNascimento=" + ", email=" + email + "]";
 	}
 
 	public Integer getIdPessoa() {
@@ -73,14 +62,6 @@ public class Pessoa implements Serializable {
 
 	public void setNomePessoa(String nomePessoa) {
 		this.nomePessoa = nomePessoa;
-	}
-
-	public Date getDtNascimento() {
-		return dtNascimento;
-	}
-
-	public void setDtNascimento(Date dtNascimento) {
-		this.dtNascimento = dtNascimento;
 	}
 
 	public String getEmail() {
